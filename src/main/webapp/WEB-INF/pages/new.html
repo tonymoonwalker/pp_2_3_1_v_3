@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/createUser}" th:object="${user}">
+    <label for="firstname=">Enter name and surname: </label>
+    <input type="text" th:field="*{firstName}" id="firstname="/>
+    <input type="text" th:field="*{lastName}" id="lastname="/>
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+<a href="/">If you want to see users without adding, click here</a>
+</body>
+</html>
