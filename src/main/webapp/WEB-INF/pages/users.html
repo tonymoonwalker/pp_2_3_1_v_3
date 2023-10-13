@@ -24,6 +24,7 @@
         <td th:text="${user.getEmail()}"></td>
         <td>
             <a th:href="@{'edit?id=' + ${user.id}}">Edit</a>
+            / <a th:href="@{'delete?id=' + ${user.id}}">Delete</a>
         </td>
     </tr>
 </table>

@@ -39,8 +39,8 @@ public class UserController {
         return "edit";
     }
 
-    @PostMapping("/")
-    public String update(@ModelAttribute("user") User user, @RequestParam(name = "id") long id) {
+    @PostMapping("/edit")
+    public String update(@ModelAttribute("user") User user) {
         userService.edit(user);
         return "redirect:/";
     }
@@ -49,15 +49,14 @@ public class UserController {
         userService.add(user);
         return "redirect:/";
     }
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") long id, Model model) {
+    @GetMapping("/delete")
+    public String showDeleteConfirmation(@RequestParam("id") long id, Model model) {
         model.addAttribute("user", userService.getById(id));
-        return "show";
+        return "delete";
     }
-@DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") long id){
+    @PostMapping("/delete")
+    public String delete(@RequestParam(name = "id") long id) {
         userService.delete(id);
         return "redirect:/";
     }
-
 }
