@@ -3,18 +3,21 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import web.dao.UserDao;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import web.model.User;
 import web.service.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
-    private UserDao userDao;
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -40,12 +43,20 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute("user") User user) {
+    public String update(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("error", result.getAllErrors());
+            return "edit";
+        }
         userService.edit(user);
         return "redirect:/";
     }
-    @PostMapping("/createUser")
-    public String createUser(@ModelAttribute("user") User user){
+    @PostMapping("/new")
+    public String createUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
+        if (result.hasErrors()) {
+            model.addAttribute("error", result.getAllErrors());
+            return "new";
+        }
         userService.add(user);
         return "redirect:/";
     }
