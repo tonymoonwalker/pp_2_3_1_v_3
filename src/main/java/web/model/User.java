@@ -18,13 +18,13 @@ public class User {
     @Column(name = "id")
     private long id;
     @Column(name = "firstname")
-    @Pattern(regexp = "^[a-zA-Z]+$")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Не должно содержать цифр и спецсимволов")
     private String firstName;
     @Column(name = "lastname")
-    @Pattern(regexp = "^[a-zA-Z]+$")
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Не должно содержать цифр и спецсимволов")
     private String lastName;
     @Column(name = "email")
-    @Email
+    @Email(message = "Неверный формат электропочты")
     private String email;
 
     public User() {
