@@ -17,15 +17,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "firstname")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Не должно содержать цифр и спецсимволов")
-    private String firstName;
     @Column(name = "lastname")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Не должно содержать цифр и спецсимволов")
+    @Pattern(regexp = "^[a-zA-Zа-яА-Я/-]+$", message = "Не должно содержать цифр и спецсимволов")
     private String lastName;
     @Column(name = "email")
     @Email(message = "Неверный формат электропочты")
     private String email;
+    @Column(name = "firstname")
+    @Pattern(regexp = "^[a-zA-Zа-яА-Я/-]+$", message = "Не должно содержать цифр и спецсимволов")
+    private String firstName;
 
     public User() {
     }
