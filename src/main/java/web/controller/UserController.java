@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
-
+//Должна работать валидация
     private final UserService userService;
     @Autowired
     public UserController(UserService userService) {
